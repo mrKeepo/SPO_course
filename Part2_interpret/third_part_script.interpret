@@ -1,5 +1,8 @@
 : IMMEDIATE
-  save_lw @ cfa 1 - dup c@ 1 or swap c!
+  save_lw @ 
+  cfa 1 - 
+  dup c@ 
+  1 or swap c!
 ;
 
 : if
@@ -13,29 +16,6 @@
 : then
   here swap !
 ; IMMEDIATE
-
-: greatest
-  dup rot swap dup rot
-  > if
-    drop .
-  else
-    . drop
-  then
-;
-
-: factorial
-  dup -1 > if
-    dup 0 > if
-      1 swap
-        repeat
-          dup rot *
-          swap 1 -
-          dup 0 =
-        until
-      drop
-    else drop 1 then
-  else drop 0 then
-;
 
 : dub_over >r dup r> swap >r dup r> swap ;
 
@@ -53,9 +33,10 @@
   ' drop , ' r> , ' drop ,
 ;  IMMEDIATE
 
-: fill_stack
-    1
-    for
-      dup
-    endfor
-;
+: repeat
+  here
+; IMMEDIATE
+
+: until
+  ' branchifz , ,
+; IMMEDIATE
