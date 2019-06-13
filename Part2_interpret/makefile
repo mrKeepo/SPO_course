@@ -12,3 +12,6 @@ clean:
 
 run: build
 	./interpret
+
+test_third_part: build
+	./interpret < third_part_script.interpret
